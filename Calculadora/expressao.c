@@ -172,13 +172,13 @@ char *getFormaPosFixa(char *StrInFixa) {
     }
     output[0] = '\0';
     
-    // strtok modifies the string, so make a copy
+
     char tempInput[strlen(StrInFixa) + 1];
     strcpy(tempInput, StrInFixa);
 
     char *token;
 
-    token = strtok(tempInput, " "); // Using strtok
+    token = strtok(tempInput, " ");
     while (token != NULL) {
         if (is_number(token)) {
             strcat(output, token);
@@ -213,7 +213,7 @@ char *getFormaPosFixa(char *StrInFixa) {
             }
             pushChar(&opStack, token);
         }
-        token = strtok(NULL, " "); // Using strtok
+        token = strtok(NULL, " "); 
     }
 
     while (!isCharStackEmpty(&opStack)) {
@@ -243,7 +243,7 @@ float getValorPosFixa(char *StrPosFixa) {
 
     char *token;
 
-    token = strtok(tempInput, " "); // Using strtok
+    token = strtok(tempInput, " "); 
     while (token != NULL) {
         if (is_number(token)) {
             pushDouble(&valStack, atof(token));
@@ -295,7 +295,7 @@ float getValorPosFixa(char *StrPosFixa) {
                 pushDouble(&valStack, result);
             }
         }
-        token = strtok(NULL, " "); // Using strtok
+        token = strtok(NULL, " "); 
     }
 
     if (valStack.top == 0) { // Exactly one value should remain
@@ -322,7 +322,7 @@ char *getFormaInFixa(char *StrPosFixa) {
     char *token;
     char buffer[512]; 
 
-    token = strtok(tempInput, " "); // Using strtok
+    token = strtok(tempInput, " "); 
     while (token != NULL) {
         if (is_number(token)) {
             pushString(&exprStack, token);
@@ -351,7 +351,7 @@ char *getFormaInFixa(char *StrPosFixa) {
             snprintf(buffer, sizeof(buffer), "( %s %s %s )", op1_copy, token, op2_copy);
             pushString(&exprStack, buffer);
         }
-        token = strtok(NULL, " "); // Using strtok
+        token = strtok(NULL, " "); 
     }
 
     if (exprStack.top == 0) { // Exactly one expression string should remain
